@@ -5,8 +5,6 @@
 	<h1 class="display-4">Jasa Servis</h1>
 	<p class="lead">Melakukan servis yang dibutuhkan Anda!</p>
 
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-dark mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Tambahkan Barang</button>
 	<table class="table table-primary table-striped">
 		<thead>
 			<tr class="table table-primary table-striped">
@@ -25,7 +23,7 @@
 				<td>{{ row.1 }}</td>
 				<td>{{ row.2 }}</td>
 				<td>
-					<a href="/update" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modalEdit{{ row.0 }}">Edit</a>
+					<a href="/update/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="table{{ row.0 }}">Edit</a>
 					<a href="/hapus/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('Yakin ingin hapus?')">Hapus</a>
 				</td>
 			</tr>
@@ -73,34 +71,5 @@
 		></path>
 	</svg>
 </section>
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="Jasa">Tambahkan Jasa</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<form action="{{ url_for('simpan') }}" method="POST">
-					<div class="form-group">
-						<label>Nama:</label>
-						<input type="text" class="form-control" nama="nama" />
-					</div>
-					<div class="form-group">
-						<label>Harga:</label>
-						<input type="text" class="form-control" harga="harga" />
-					</div>
-					<div class="form-group">
-						<button type="button" class="btn btn-primary">Submit</button>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
 <!-- Akhir Jumbotron -->
 {% endblock %}

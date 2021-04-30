@@ -119,10 +119,11 @@ def simpan():
         nama = request.form['nama']
         harga = request.form['harga']
         mycursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        mycursor.execute ("INSERT INTO jasaservis nama, harga) VALUES (%s, %s)", (id, nama, harga,))
+        mycursor.execute ("INSERT INTO jasaservis nama, harga) VALUES (%s, %s)", (id_data, nama, harga,))
+        data = mycursor.fetchall()
         mycursor.commit()
         flash('Added successfully')
-        return redirect(url_for('jasaservis'))
+        return redirect(url_for('jasaservis', data=data))
 
 @app.route('/update', methods=['POST'])
 def update():
@@ -130,18 +131,20 @@ def update():
     nama = request.form['nama']
     harga = request.form['harga']
     mycursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    mycursor.execute("UPDATE jasaservis SET nama=%s, harga=%s WHERE id=%s", (nama, harga))
+    mycursor.execute("UPDATE jasaservis SET nama=%s, harga=%s WHERE id=%s", (nama, harga, id_data))
+    data = mycursor.fetchall()
     mycursor.commit()
     flash('Added successfully')
-    return redirect(url_for('jasaservis'))
+    return redirect(url_for('jasaservis', data=data))
 
 @app.route('/hapus/<string:id_data>', methods=['POST'])
 def hapus(id_data):
     mycursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     mycursor.execute("DELETE FROM jasaservis WHERE id=%s", (id_data))
+    data = mycursor.fetchall()
     mycursor.commit()
     flash('Removed Successfully')
-    return redirect(url_for('jasaservis'))
+    return redirect(url_for('jasaservis', data=data))
     
 @app.route('/sparepart', methods=['GET', 'POST'])
 def spare():
