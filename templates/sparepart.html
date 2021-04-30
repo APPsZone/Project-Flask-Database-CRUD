@@ -1,0 +1,73 @@
+{% extends 'layout.html' %} {% block title %} Spare Part {% endblock %} {% block body %}
+<!-- Jumbotron -->
+<section class="jumbotron text-center" style="background-color: #fff689">
+	<img src={{url_for ('static', filename = "img/parts.jpg")}} alt="Spare Parts" width="350px">
+	<h1 class="display-4">Spare Part</h1>
+	<p class="lead">Terdapat berbagai macam spare part</p>
+
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Tambahkan Barang</button>
+	<table class="table table-light table-striped">
+		<thead>
+			<tr class="table table-light table-striped">
+				<th scope="col">#</th>
+				<th scope="col">Id</th>
+				<th scope="col">Nama Barang</th>
+				<th scope="col">Harga</th>
+				<th scope="col">Stok</th>
+				<th scope="col">Aksi</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for row in data %}
+			<tr class="table table-light table-striped">
+				<th scope="row">1</th>
+				<td>{{ row.0 }}</td>
+				<td>{{ row.1 }}</td>
+				<td>{{ row.2 }}</td>
+				<td>{{ row.3 }}</td>
+				<td>Edit Delete</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+		<path
+			fill="#ffff"
+			fill-opacity="1"
+			d="M0,64L48,90.7C96,117,192,171,288,202.7C384,235,480,245,576,224C672,203,768,149,864,106.7C960,64,1056,32,1152,48C1248,64,1344,128,1392,160L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+		></path>
+	</svg>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Tambahkan Barang</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="nama_barang">Nama:</label>
+					<input type="text" class="form-control" id="nama_barang" />
+				</div>
+				<div class="form-group">
+					<label for="harga">Harga:</label>
+					<input type="text" class="form-control" id="harga" />
+				</div>
+				<div class="form-group">
+					<label for="stok">Stok:</label>
+					<input type="text" class="form-control" id="stok" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Akhir Jumbotron -->
+{% endblock %}
